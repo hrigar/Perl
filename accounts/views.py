@@ -16,35 +16,20 @@ def dashboard(request):
 @restrict_relogin
 def login_view(request):
     if request.method == 'POST':
-        # print('yes')
         email = request.POST['email']
         password = request.POST['password']
         user = authenticate(request, email=email,password=password)
-        print(user)
         if user is not None:
-            # print('auth')
             login(request,user)
             messages.success(request,'Account login Successfull')
 
-            # next_url = request.GET.get('next')
-            # print('g')
-            # print(next_url)
-            # if next_url:
-            #     return redirect(next_url)
-
-            next_url = request.GET.get('next')  # Get the next URL if provided
-
-            print(next_url)
+            next_url = request.GET.get('next')
             if next_url:
-                print('gg')
                 return redirect(next_url)
-                print('redirecting')
 
             return redirect('home')
         else:
-            # print('err')
             messages.error(request,'Invalid email or Password')
-
     return render(request,'login.html')
 
 # @login_required
