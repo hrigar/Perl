@@ -50,7 +50,7 @@ def register_view(request):
 
             if user.user_type == 'learner':
                 LearnerProfile.objects.create(user=user)
-            else:  # educator
+            else:
                 EducatorProfile.objects.create(user=user)
 
             login(request,user)
@@ -58,11 +58,12 @@ def register_view(request):
             return redirect('login')
 
         else :
-            messages.error(request,'Invalid data')
+            messages.error(request,'Invalid Credentials')
     else:
         form = CustomUserCreationForm()
 
     return render(request, 'register.html',{'form':form })
+
 
 @login_required
 def profile_view(request):
@@ -86,19 +87,6 @@ def profile_view(request):
 
     return render(request, 'profile_view.html', context)
 
-
-
-
-    # user = CustomUser.objects.filter(email=request.user.email).first()
-    # educator = EducatorProfile.objects.filter(id=request.user.id).first()
-    #
-    # print(user.user_type)
-    # print(educator)
-    # context = {
-    #     'user':user,
-    #
-    # }
-    # return render(request,'profile_view.html',context)
 
 @login_required
 def edit_profile(request):
