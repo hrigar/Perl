@@ -149,7 +149,6 @@ def tryh(request):
             messages.success(request,'Profile Updated successfully')
             return redirect('profile')
         else:
-            # print('error')
             messages.error(request,'Invalid data')
     else:
         form = form_class(instance=instance)
@@ -160,7 +159,6 @@ def tryh(request):
         'user_change':user_change,
         'is_educator':is_educator
     }
-
     return render(request, 'try.html', context)
 
 
@@ -169,31 +167,3 @@ def tryh(request):
 def about(request):
     return render(request,'about.html')
 
-
-
-
-
-
-
-
-
-# def create_classroom(request):
-#
-#     if request.method == 'POST':
-#         form = CreateMeetingForm(request.POST)
-#
-#         if form.is_valid():
-#             form.save()
-#             print('done')
-#         else:
-#             print('error')
-#
-#
-#     else:
-#         form = CreateMeetingForm()
-#
-#     context = {
-#         'form':form
-#     }
-#
-#     return render(request,'create_class.html',context)
