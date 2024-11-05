@@ -43,9 +43,6 @@
                 </ul>
 
 
-
-
-
             <div class="flex space-x-2 mt-10 mb-20">
 
         <button id="create-url-btn" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -53,10 +50,7 @@
         </button>
             </div>
 
-
-
-
-                <!-- Form for creating an url -->
+              <!-- Form for creating an url -->
 <form id="url-form" class="hidden mt-4" method="post" action="">
     {% csrf_token %}
     <textarea id="url-content" name="url" class="w-full p-2 border rounded" rows="4" placeholder="Enter the url..."></textarea>
@@ -64,19 +58,7 @@
         Submit URL
     </button>
 </form>
-
-
-
-
-
-
-
-
-
-
-
-
-                {% if request.user.user_type == 'educator' and classroom.educator.user == request.user %}
+             {% if request.user.user_type == 'educator' and classroom.educator.user == request.user %}
     <form method="POST" action="{% url 'remove_classroom' classroom.id %}">
         {% csrf_token %}
         <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mt-2.5">Remove Classroom</button>
@@ -180,7 +162,7 @@
                     {% for student in students %}
                     <div class="bg-green-100 p-2 rounded">
 <!--                        <p class="font-medium">{{ student.user.email }}</p>-->
-                        <p class="font-medium">{{ student.user.full_name }}</p>
+                                <p class="font-medium">{{ student.user.full_name }}</p>
 <!--                        <p class="text-sm text-gray-600">Now on Tuesdays and Thursdays</p>-->
                     </div>
                     {% endfor %}
@@ -196,36 +178,10 @@
             </div>
 
 
-<!--            <div class="p-4 flex-grow overflow-auto">-->
-<!--                <h3 class="text-lg font-semibold mb-2">Notes & Alerts</h3>-->
-<!--                <div class="space-y-2">-->
-<!--                    <div class="bg-yellow-100 p-2 rounded">-->
-<!--                        <p class="font-medium">Quiz Tomorrow</p>-->
-<!--                        <p class="text-sm text-gray-600">Don't forget to study Chapter 2!</p>-->
-<!--                    </div>-->
-<!--                    <div class="bg-green-100 p-2 rounded">-->
-<!--                        <p class="font-medium">Office Hours Changed</p>-->
-<!--                        <p class="text-sm text-gray-600">Now on Tuesdays and Thursdays</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-
-
-
             <div class="p-4 flex-grow overflow-auto">
     <h3 class="text-lg font-semibold mb-2">Notes & Alerts</h3>
     <div class="space-y-2 mb-4">
         <div class="flex space-x-2">
-<!---->
-<!--            <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">-->
-<!--                Create Note-->
-<!--            </button>-->
-<!--        </a>-->
-<!--            <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">-->
-<!--                Create Alert-->
-<!--            </button>-->
-<!--        </a>-->
 
             {% if is_joined %}
             <div class="flex space-x-2">
@@ -251,32 +207,9 @@
         {% endfor %}
     </div>
                 {% endif %}
-<!--    <div class="flex space-x-2">-->
-<!--            <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">-->
-<!--                Create Note-->
-<!--            </button>-->
-<!--        </a>-->
-<!--            <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">-->
-<!--                Create Alert-->
-<!--            </button>-->
-<!--        </a>-->
+
     </div>
 
-            <!-- Hidden form for creating note -->
-<!--    <div id="note-form" class="hidden mt-4">-->
-<!--        <textarea id="note-content" class="w-full p-2 border rounded" rows="4" placeholder="Enter note content..."></textarea>-->
-<!--        <button id="submit-note" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 mt-2">-->
-<!--            Submit Note-->
-<!--        </button>-->
-<!--    </div>-->
-
-<!--    &lt;!&ndash; Hidden form for creating alert &ndash;&gt;-->
-<!--    <div id="alert-form" class="hidden mt-4">-->
-<!--        <textarea id="alert-content" class="w-full p-2 border rounded" rows="4" placeholder="Enter alert content..."></textarea>-->
-<!--        <button id="submit-alert" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 mt-2">-->
-<!--            Submit Alert-->
-<!--        </button>-->
-<!--    </div>-->
 
             <!-- Form for creating a note -->
 <form id="note-form" class="hidden mt-4" method="post" action="{% url 'create_note' classroom.id %}">
