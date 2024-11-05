@@ -11,15 +11,21 @@ from django.db.models import Q
 import environ
 from django.contrib.auth.decorators import login_required
 from .decorators import only_educator, secure
+from django.db.models import Count, F
 # Create your views here.
 
 
-
 def home_page(request):
-    # classroom_codes = Classroom.objects.values_list('room_code', flat=True)
-    # for code in classroom_codes:
-    #     print(code)
-    return render(request,'page_home.html')
+    educators = acc.EducatorProfile.objects.annotate(
+        num_students=Count('classrooms__student', distinct=True)
+    ).filter(
+        num_students__gt=0
+    ).order_by('-num_students')[:4]
+
+    context = {
+        'educators': educators
+    }
+    return render(request, 'home_page.html', context)
 
 @only_educator
 @login_required
